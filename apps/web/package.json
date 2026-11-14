@@ -11,8 +11,8 @@
   "dependencies": {
     "@clerk/nextjs": "^7.10.0",
     "@clerk/ui": "^1.42.6",
-    "@vistra/ghost-cursor": "workspace:*",
-    "@vistra/sdk-core": "workspace:*",
+    "@boredooms/vistra-ghost-cursor": "workspace:*",
+    "@boredooms/vistra-sdk": "workspace:*",
     "clsx": "^2.1.1",
     "gsap": "^3.12.5",
     "lenis": "^1.1.18",

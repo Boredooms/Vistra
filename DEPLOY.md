@@ -7,7 +7,7 @@ Three deployables plus one package release. They are separate on purpose:
 | API (FastAPI + LangGraph + worker) | Render (Docker) | `render.yaml` | VISTRA itself |
 | Website + dashboard (`apps/web`) | Vercel project `vistra-web` | `apps/web` | VISTRA itself (Clerk sign-in, apps, keys, knowledge, logs) |
 | Acme demo (`apps/demo`) | Vercel project `vistra-demo` | `apps/demo` | A *customer* of VISTRA. It only knows an app ID + API key |
-| `@vistra/sdk-core`, `@vistra/ghost-cursor` | npm | `packages/*` | What any customer site installs |
+| `@boredooms/vistra-sdk`, `@boredooms/vistra-ghost-cursor` | npm | `packages/*` | What any customer site installs |
 | Extension | GitHub Actions artifact / release zip | `apps/extension` | Runs VISTRA on sites you enable |
 
 Acme and VISTRA are different sites with different origins. Acme never sees VISTRA's database or Clerk: it holds one
@@ -96,11 +96,11 @@ Chrome/Edge → `chrome://extensions` → Developer mode → **Load unpacked** �
 ## 6. Adding VISTRA to any site (what a customer does)
 
 ```bash
-npm i @vistra/sdk-core
+npm i @boredooms/vistra-sdk
 ```
 
 ```ts
-import { Vistra, mountWidget } from "@vistra/sdk-core";
+import { Vistra, mountWidget } from "@boredooms/vistra-sdk";
 
 const vistra = Vistra.init({
   appId: "app_xxx",

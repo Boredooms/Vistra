@@ -1,5 +1,5 @@
 {
-  "name": "@vistra/sdk-core",
+  "name": "@boredooms/vistra-sdk",
   "version": "0.1.0",
   "description": "Browser SDK for VISTRA: cited answers, guided walkthroughs with a visible cursor, and approved, verified actions.",
   "license": "MIT",
@@ -24,7 +24,7 @@
     }
   },
   "dependencies": {
-    "@vistra/ghost-cursor": "workspace:^"
+    "@boredooms/vistra-ghost-cursor": "workspace:^"
   },
   "devDependencies": {
     "jsdom": "^25.0.1",

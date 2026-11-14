@@ -45,7 +45,7 @@ export async function POST(req: Request) {
   const { token, session_id: id, token_ttl } = await res.json();
   return Response.json({ token, session_id: id, token_ttl });
 }`;
-  const client = `import { Vistra } from "@vistra/sdk-core";
+  const client = `import { Vistra } from "@boredooms/vistra-sdk";
 
 const vistra = Vistra.init({
   appId: "${app.id}",
@@ -79,7 +79,7 @@ await vistra.ask("What does the Starter plan include?");`;
         ))}
       </ul>
       <div className="space-y-8">
-        <div><h2 className="mb-1 font-medium">1. Install</h2><Snippet title="terminal" code="npm install @vistra/sdk-core" /></div>
+        <div><h2 className="mb-1 font-medium">1. Install</h2><Snippet title="terminal" code="npm install @boredooms/vistra-sdk" /></div>
         <div><h2 className="mb-1 font-medium">2. Mint sessions on your server</h2><Snippet title="session route" code={server} /></div>
         <div><h2 className="mb-1 font-medium">3. Start the SDK in the browser</h2><Snippet title="client" code={client} /></div>
         <div><h2 className="mb-1 font-medium">4. Mark the controls guides can point at</h2><Snippet title="markup" code={mark} /></div>

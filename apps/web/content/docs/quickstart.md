@@ -12,7 +12,7 @@ Open API keys and choose Create key. Pick the Embed (server) preset for the key 
 
 ## Install the SDK
 
-Run npm install @vistra/sdk-core in your frontend. Add a server route that exchanges your API key for a short-lived session token. The browser only ever receives that token, which expires after 15 minutes and is refreshed automatically at 80 percent of its lifetime.
+Run npm install @boredooms/vistra-sdk in your frontend. Add a server route that exchanges your API key for a short-lived session token. The browser only ever receives that token, which expires after 15 minutes and is refreshed automatically at 80 percent of its lifetime.
 
 ## Add your knowledge
 

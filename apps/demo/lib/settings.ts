@@ -13,6 +13,9 @@ export interface VistraConfig {
   source: "setup" | "env";
 }
 
+// One row per deployment (local dev and the Vercel demo share the demo database).
+const ROW = process.env.DEMO_INSTANCE ?? "vistra";
+
 let ensured = false;
 async function ensureTable(): Promise<void> {
   if (ensured) return;
@@ -25,7 +28,7 @@ async function ensureTable(): Promise<void> {
 
 export async function getConfig(): Promise<VistraConfig | null> {
   await ensureTable();
-  const r = await db().query("select api_url, app_id, api_key, tool_secret from demo.settings where id = 'vistra'");
+  const r = await db().query("select api_url, app_id, api_key, tool_secret from demo.settings where id = $1", [ROW]);
   if (r.rows[0]) {
     const s = r.rows[0];
     return { apiUrl: s.api_url, appId: s.app_id, apiKey: s.api_key, toolSecret: s.tool_secret, source: "setup" };
@@ -45,22 +48,22 @@ export async function getConfig(): Promise<VistraConfig | null> {
 export async function saveConfig(c: { apiUrl: string; appId: string; apiKey: string; toolSecret: string | null; appName: string }) {
   await ensureTable();
   await db().query(
-    "insert into demo.settings (id, api_url, app_id, api_key, tool_secret, app_name) values ('vistra', $1, $2, $3, $4, $5) " +
+    "insert into demo.settings (id, api_url, app_id, api_key, tool_secret, app_name) values ($6, $1, $2, $3, $4, $5) " +
       "on conflict (id) do update set api_url = $1, app_id = $2, api_key = $3, tool_secret = $4, app_name = $5, updated_at = now()",
-    [c.apiUrl, c.appId, c.apiKey, c.toolSecret, c.appName],
+    [c.apiUrl, c.appId, c.apiKey, c.toolSecret, c.appName, ROW],
   );
 }
 
 export async function clearConfig(): Promise<void> {
   await ensureTable();
-  await db().query("delete from demo.settings where id = 'vistra'");
+  await db().query("delete from demo.settings where id = $1", [ROW]);
 }
 
 export async function publicConfig() {
   const c = await getConfig();
   let appName: string | null = null;
   if (c?.source === "setup") {
-    const r = await db().query("select app_name from demo.settings where id = 'vistra'");
+    const r = await db().query("select app_name from demo.settings where id = $1", [ROW]);
     appName = r.rows[0]?.app_name ?? null;
   }
   return c

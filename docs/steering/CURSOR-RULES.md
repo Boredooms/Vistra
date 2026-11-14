@@ -26,7 +26,7 @@ pgvector, Storage) · Clerk · Gemini (primary) + NVIDIA NIM (fallback) · Rende
 | TS variables/types | `camelCase` / `PascalCase` | `sessionToken`, `GuideStep` |
 | React components | `PascalCase.tsx` | `AgentRunTimeline.tsx` |
 | Hooks | `useX` | `useAgentRunStream` |
-| Packages | `@vistra/<kebab>` | `@vistra/ghost-cursor` |
+| Packages | `@vistra/<kebab>` | `@boredooms/vistra-ghost-cursor` |
 | Env vars | `UPPER_SNAKE`, provider-prefixed | `GEMINI_MODEL_VISION` |
 | Feature flags | `ff_<area>_<behavior>` | `ff_rag_hybrid_search` |
 | Events | `<domain>.<entity>.<past_tense>` | `agent.run.completed` |

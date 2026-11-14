@@ -3,8 +3,8 @@
  * for content scripts (page CORS does not apply here), captures the visible tab, and registers the content script
  * on origins the user enabled (optional host permissions, requested from the popup).
  */
-import { HttpTransport } from "@vistra/sdk-core/src/transport";
-import { VistraApiError, type SessionInfo } from "@vistra/sdk-core/src/types";
+import { HttpTransport } from "@boredooms/vistra-sdk/src/transport";
+import { VistraApiError, type SessionInfo } from "@boredooms/vistra-sdk/src/types";
 import { getConfig, isSensitive, originPattern, scriptId, type PortIn, type PortOut } from "./shared";
 
 const transports = new Map<string, HttpTransport>();

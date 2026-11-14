@@ -1,13 +1,13 @@
-# @vistra/ghost-cursor
+# @boredooms/vistra-ghost-cursor
 
 A visible guide cursor for web apps. It finds real controls, travels to them with eased motion, shows a short reasoning bubble beside the pointer, and waits for the user. It never clicks or types for the user. Zero dependencies, styles isolated in a shadow root.
 
 ```bash
-npm install @vistra/ghost-cursor
+npm install @boredooms/vistra-ghost-cursor
 ```
 
 ```ts
-import { GhostCursor } from "@vistra/ghost-cursor";
+import { GhostCursor } from "@boredooms/vistra-ghost-cursor";
 
 const cursor = new GhostCursor({ label: "Guide", onEvent: (e) => console.log(e.type) });
 const result = await cursor.runFlow([

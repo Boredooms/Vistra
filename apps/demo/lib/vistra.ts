@@ -1,4 +1,4 @@
-import type { SessionInfo } from "@vistra/sdk-core";
+import type { SessionInfo } from "@boredooms/vistra-sdk";
 
 const KEY = "vistra.session_id";
 

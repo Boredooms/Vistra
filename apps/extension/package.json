@@ -9,8 +9,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@vistra/ghost-cursor": "workspace:*",
-    "@vistra/sdk-core": "workspace:*"
+    "@boredooms/vistra-ghost-cursor": "workspace:*",
+    "@boredooms/vistra-sdk": "workspace:*"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.287",

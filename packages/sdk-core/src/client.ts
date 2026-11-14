@@ -1,4 +1,4 @@
-import { GhostCursor, normalizePath, routeMatches, type CursorEvent, type GuideStep } from "@vistra/ghost-cursor";
+import { GhostCursor, normalizePath, routeMatches, type CursorEvent, type GuideStep } from "@boredooms/vistra-ghost-cursor";
 import { collectRoutes, collectTargets, describeElement, summarizePage } from "./context";
 import { HttpTransport } from "./transport";
 import type {

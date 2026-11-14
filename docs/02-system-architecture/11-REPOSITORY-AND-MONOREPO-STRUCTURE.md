@@ -225,7 +225,7 @@ Path filtering keeps PR feedback under ~10 minutes. Full matrix in
 |---|---|---|---|
 | API | `vistra-api` | Runtime | Render web |
 | Workers | `vistra-ingestion`, `vistra-agent-worker`, `vistra-eval`, `vistra-webhooks` | Runtime/Knowledge | Render workers |
-| npm packages | `@vistra/sdk`, `@vistra/react`, `@vistra/widget`, `@vistra/ghost-cursor`, `@vistra/api-client`, `@vistra/shared-types`, `@vistra/design-system` | DX/Experience | npm (after authorization) |
+| npm packages | `@vistra/sdk`, `@vistra/react`, `@vistra/widget`, `@boredooms/vistra-ghost-cursor`, `@vistra/api-client`, `@vistra/shared-types`, `@vistra/design-system` | DX/Experience | npm (after authorization) |
 | Studio | `vistra-studio` | Experience | Vercel |
 | Demo | `acme-workspace` | Experience | Vercel |
 | Docs | `vistra-docs` | DX | Vercel |

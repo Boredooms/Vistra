@@ -1,4 +1,4 @@
-import type { KnownTarget } from "@vistra/sdk-core";
+import type { KnownTarget } from "@boredooms/vistra-sdk";
 
 /** Controls on this website that guides may point at (including on other routes). */
 export const WEB_TARGETS: KnownTarget[] = [

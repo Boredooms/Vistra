@@ -3,7 +3,7 @@ import { HeroStage } from "@/components/home/HeroStage";
 import { HeroTitle } from "@/components/home/HeroTitle";
 import { Reveal } from "@/components/home/Reveal";
 
-const CODE = `import { Vistra } from "@vistra/sdk-core";
+const CODE = `import { Vistra } from "@boredooms/vistra-sdk";
 
 const vistra = Vistra.init({
   appId: "app_...",
@@ -43,7 +43,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <h2 id="live" className="max-w-xl text-h2">Watch it guide.</h2>
-            <p className="max-w-sm text-sm leading-6 text-muted">This is the real <span className="font-mono text-ink">@vistra/ghost-cursor</span> package walking a stand-in product. Your users see the same thing over your UI.</p>
+            <p className="max-w-sm text-sm leading-6 text-muted">This is the real <span className="font-mono text-ink">@boredooms/vistra-ghost-cursor</span> package walking a stand-in product. Your users see the same thing over your UI.</p>
           </Reveal>
           <HeroStage />
         </div>

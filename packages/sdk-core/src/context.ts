@@ -1,4 +1,4 @@
-import { accessibleName, defaultIsVisible, normalizePath, roleOf } from "@vistra/ghost-cursor";
+import { accessibleName, defaultIsVisible, normalizePath, roleOf } from "@boredooms/vistra-ghost-cursor";
 import type { KnownTarget, Selection } from "./types";
 
 const MAX_SUMMARY = 8000;

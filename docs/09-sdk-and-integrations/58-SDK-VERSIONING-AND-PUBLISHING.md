@@ -17,7 +17,7 @@ Customers embed the SDK in production pages; a careless release breaks their pro
 | `@vistra/sdk` | semver | minor = additive; major = breaking |
 | `@vistra/react` | semver, peer `@vistra/sdk` | minor may require a new sdk minor (documented) |
 | `@vistra/widget` | semver | independent bundle, pins sdk range |
-| `@vistra/ghost-cursor` | semver | zero deps; major for API changes |
+| `@boredooms/vistra-ghost-cursor` | semver | zero deps; major for API changes |
 | `@vistra/api-client` | follows API `/v1`, `0.x` until stable | regenerated, never hand-edited |
 | `@vistra/shared-types` | `0.x`, private or published with api-client | types only |
 

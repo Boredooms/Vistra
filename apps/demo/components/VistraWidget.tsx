@@ -1,6 +1,6 @@
 "use client";
 
-import { Vistra, mountWidget } from "@vistra/sdk-core";
+import { Vistra, mountWidget } from "@boredooms/vistra-sdk";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";

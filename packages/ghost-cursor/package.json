@@ -1,5 +1,5 @@
 {
-  "name": "@vistra/ghost-cursor",
+  "name": "@boredooms/vistra-ghost-cursor",
   "version": "0.1.0",
   "description": "A visible guide cursor that finds real UI controls by role and name, explains each step, and never acts for the user.",
   "license": "MIT",

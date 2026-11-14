@@ -13,8 +13,8 @@ The specification lives in [`docs/`](docs/README.md). Current, evidence-backed s
 | `apps/api` | FastAPI + LangGraph agent runtime (Python 3.12, uv) |
 | `apps/web` | Website (landing, features, packages, security, docs) + Clerk-authenticated dashboard (Next.js 15) |
 | `apps/demo` | "Acme Workspace", a stand-in customer app with signed tool endpoints |
-| `packages/sdk-core` | `@vistra/sdk-core` browser SDK |
-| `packages/ghost-cursor` | `@vistra/ghost-cursor` standalone guide cursor |
+| `packages/sdk-core` | `@boredooms/vistra-sdk` browser SDK |
+| `packages/ghost-cursor` | `@boredooms/vistra-ghost-cursor` standalone guide cursor |
 | `supabase/migrations` | Ordered SQL migrations (RLS enabled and forced on every tenant table) |
 | `scripts/` | migrate, seed, checks, stress test |
 | `tests/e2e` | Playwright journeys (demo beats, dashboard flow) |
@@ -65,7 +65,7 @@ uv run python ../../scripts/durable_approval.py propose "Create a project called
 uv run python ../../scripts/durable_approval.py approve
 uv run python ../../scripts/stress.py --messages 12 --concurrency 6
 cd ../.. && node tests/e2e/dashboard-flow.mjs   # browser: site pages + Clerk sign-in + every dashboard page
-pnpm -r typecheck && pnpm --filter @vistra/ghost-cursor test
+pnpm -r typecheck && pnpm --filter @boredooms/vistra-ghost-cursor test
 python docs/tools/validate-docs.py
 ```
 
@@ -74,7 +74,7 @@ python docs/tools/validate-docs.py
 The `vistra` npm org is owned by the publishing account. npm requires browser 2FA approval for each publish:
 
 ```bash
-pnpm --filter @vistra/ghost-cursor build && pnpm --filter @vistra/sdk-core build
+pnpm --filter @boredooms/vistra-ghost-cursor build && pnpm --filter @boredooms/vistra-sdk build
 cd packages/ghost-cursor && pnpm publish --access public --no-git-checks   # approve in the browser
 cd ../sdk-core && pnpm publish --access public --no-git-checks
 ```

@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
 export default {
-  transpilePackages: ["@vistra/sdk-core", "@vistra/ghost-cursor"],
+  transpilePackages: ["@boredooms/vistra-sdk", "@boredooms/vistra-ghost-cursor"],
   poweredByHeader: false,
 };

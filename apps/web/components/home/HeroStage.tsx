@@ -1,6 +1,6 @@
 "use client";
 
-import { GhostCursor, type GuideStep } from "@vistra/ghost-cursor";
+import { GhostCursor, type GuideStep } from "@boredooms/vistra-ghost-cursor";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 
@@ -12,7 +12,7 @@ const STEPS: GuideStep[] = [
 
 const MEMBERS = [["Dev Owner", "Owner"], ["Priya Nair", "Admin"], ["Marcus Lee", "Member"]];
 
-/** The real @vistra/ghost-cursor moving over live DOM. The surrounding "product" is a stand-in for yours. */
+/** The real @boredooms/vistra-ghost-cursor moving over live DOM. The surrounding "product" is a stand-in for yours. */
 export function HeroStage() {
   const root = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState<"dash" | "team">("dash");

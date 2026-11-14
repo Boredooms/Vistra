@@ -1,4 +1,4 @@
-import type { KnownTarget } from "@vistra/sdk-core";
+import type { KnownTarget } from "@boredooms/vistra-sdk";
 
 /** Controls Acme exposes to VISTRA guides, including ones that live on other routes. */
 export const TARGETS: KnownTarget[] = [

@@ -1,4 +1,4 @@
-import type { GhostCursorOptions, GuideStep } from "@vistra/ghost-cursor";
+import type { GhostCursorOptions, GuideStep } from "@boredooms/vistra-ghost-cursor";
 import type { SseMessage } from "./sse";
 
 /** Returned by the HOST's server route (which holds the API key). The browser never sees an API key. */

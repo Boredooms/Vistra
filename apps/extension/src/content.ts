@@ -1,9 +1,9 @@
 /**
  * Content script: the same SDK + widget as a website integration, with a Transport that goes through the
  * background worker (no API key or token ever lives in the page). DOM extraction, element picking, multi-page
- * guides and guide resume after full page loads all come from @vistra/sdk-core.
+ * guides and guide resume after full page loads all come from @boredooms/vistra-sdk.
  */
-import { Vistra, VistraApiError, mountWidget, type SseMessage, type Transport, type WidgetHandle } from "@vistra/sdk-core";
+import { Vistra, VistraApiError, mountWidget, type SseMessage, type Transport, type WidgetHandle } from "@boredooms/vistra-sdk";
 import { isSensitive, type PortIn, type PortOut } from "./shared";
 
 declare global {

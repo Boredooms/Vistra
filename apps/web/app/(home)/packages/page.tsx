@@ -5,12 +5,12 @@ export const metadata: Metadata = { title: "Packages" };
 
 const PKGS: Array<{ name: string; install: string; desc: string; status: string; url?: string; snippet: string }> = [
   {
-    name: "@vistra/sdk-core", install: "npm i @vistra/sdk-core", status: process.env.NEXT_PUBLIC_NPM_PUBLISHED === "1" ? "Published" : "Ready to publish", url: process.env.NEXT_PUBLIC_NPM_PUBLISHED === "1" ? "https://www.npmjs.com/package/@vistra/sdk-core" : undefined,
+    name: "@boredooms/vistra-sdk", install: "npm i @boredooms/vistra-sdk", status: process.env.NEXT_PUBLIC_NPM_PUBLISHED === "1" ? "Published" : "Ready to publish", url: process.env.NEXT_PUBLIC_NPM_PUBLISHED === "1" ? "https://www.npmjs.com/package/@boredooms/vistra-sdk" : undefined,
     desc: "Framework-free browser SDK: sessions, streaming answers, citations, approvals, guides and element selection.",
     snippet: `const vistra = Vistra.init({ appId, apiUrl, getSessionToken });\nawait vistra.ask("How do I invite a teammate?");`,
   },
   {
-    name: "@vistra/ghost-cursor", install: "npm i @vistra/ghost-cursor", status: process.env.NEXT_PUBLIC_NPM_PUBLISHED === "1" ? "Published" : "Ready to publish", url: process.env.NEXT_PUBLIC_NPM_PUBLISHED === "1" ? "https://www.npmjs.com/package/@vistra/ghost-cursor" : undefined,
+    name: "@boredooms/vistra-ghost-cursor", install: "npm i @boredooms/vistra-ghost-cursor", status: process.env.NEXT_PUBLIC_NPM_PUBLISHED === "1" ? "Published" : "Ready to publish", url: process.env.NEXT_PUBLIC_NPM_PUBLISHED === "1" ? "https://www.npmjs.com/package/@boredooms/vistra-ghost-cursor" : undefined,
     desc: "The standalone guide cursor: semantic targeting, eased motion, reasoning bubbles, reduced motion. Zero dependencies.",
     snippet: `const cursor = new GhostCursor({ label: "Guide" });\nawait cursor.runFlow([{ target: { id: "nav.team" }, instruction: "Open Team." }]);`,
   },

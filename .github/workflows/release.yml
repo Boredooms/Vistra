@@ -1,5 +1,5 @@
 name: release
-# Push a tag like v0.1.1 to publish @vistra/ghost-cursor and @vistra/sdk-core to npm and attach the extension zip.
+# Push a tag like v0.1.1 to publish @boredooms/vistra-ghost-cursor and @boredooms/vistra-sdk to npm and attach the extension zip.
 # Needs repo secret NPM_TOKEN: an npm *granular* access token with read+write on the @vistra scope and
 # "bypass two-factor authentication" enabled (classic/2FA tokens stop at a browser approval prompt).
 on:
@@ -20,14 +20,14 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: pnpm, registry-url: "https://registry.npmjs.org" }
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter @vistra/ghost-cursor --filter @vistra/sdk-core run build
+      - run: pnpm --filter @boredooms/vistra-ghost-cursor --filter @boredooms/vistra-sdk run build
       - name: Publish (skips versions already on npm)
         env: { NODE_AUTH_TOKEN: "${{ secrets.NPM_TOKEN }}" }
         run: |
           for p in ghost-cursor sdk-core; do
             cd packages/$p
-            v=$(node -p "require('./package.json').version")
-            if npm view "@vistra/$p@$v" version >/dev/null 2>&1; then echo "@vistra/$p@$v already published"; else pnpm publish --access public --no-git-checks --provenance; fi
+            id=$(node -p "const p=require('./package.json'); p.name+'@'+p.version")
+            if npm view "$id" version >/dev/null 2>&1; then echo "$id already published"; else pnpm publish --access public --no-git-checks --provenance; fi
             cd ../..
           done
 

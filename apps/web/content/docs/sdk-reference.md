@@ -1,6 +1,6 @@
 # SDK reference
 
-The package @vistra/sdk-core is framework-free TypeScript that runs in the browser.
+The package @boredooms/vistra-sdk is framework-free TypeScript that runs in the browser.
 
 ## Vistra.init
 

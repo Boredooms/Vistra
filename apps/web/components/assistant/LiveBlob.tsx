@@ -1,6 +1,6 @@
 "use client";
 
-import { Vistra, type Citation, type ProviderTrace, type ServedBy } from "@vistra/sdk-core";
+import { Vistra, type Citation, type ProviderTrace, type ServedBy } from "@boredooms/vistra-sdk";
 import clsx from "clsx";
 import { ArrowUp, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";

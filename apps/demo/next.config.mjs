@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["@vistra/sdk-core", "@vistra/ghost-cursor"],
+  transpilePackages: ["@boredooms/vistra-sdk", "@boredooms/vistra-ghost-cursor"],
   poweredByHeader: false,
   outputFileTracingIncludes: { "/docs": ["./content/**/*"] },
   async headers() {

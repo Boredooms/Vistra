@@ -16,8 +16,8 @@ guidance, events, errors, teardown, and the React bindings. This is the surface 
 |---|---|---|
 | `@vistra/sdk` | `createVistra`, client, context engine, SSE, errors | `@vistra/api-client`, `@vistra/shared-types` |
 | `@vistra/react` | `VistraProvider`, hooks | `@vistra/sdk`, react |
-| `@vistra/widget` | UI bundle | `@vistra/sdk`, `@vistra/ghost-cursor` |
-| `@vistra/ghost-cursor` | Cursor engine | none |
+| `@vistra/widget` | UI bundle | `@vistra/sdk`, `@boredooms/vistra-ghost-cursor` |
+| `@boredooms/vistra-ghost-cursor` | Cursor engine | none |
 
 ## 3. Initialization
 

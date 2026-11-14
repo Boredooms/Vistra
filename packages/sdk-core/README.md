@@ -1,13 +1,13 @@
-# @vistra/sdk-core
+# @boredooms/vistra-sdk
 
 Browser SDK for VISTRA. Answers come from your own documents with citations, guides move a visible cursor to real controls, and actions run only after approval and are verified afterwards.
 
 ```bash
-npm install @vistra/sdk-core
+npm install @boredooms/vistra-sdk
 ```
 
 ```ts
-import { Vistra } from "@vistra/sdk-core";
+import { Vistra } from "@boredooms/vistra-sdk";
 
 const vistra = Vistra.init({
   appId: "app_...",

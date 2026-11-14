@@ -1,6 +1,6 @@
 "use client";
 
-import { Vistra, type ApprovalRequest, type Citation } from "@vistra/sdk-core";
+import { Vistra, type ApprovalRequest, type Citation } from "@boredooms/vistra-sdk";
 import clsx from "clsx";
 import { ArrowUp, RotateCcw } from "lucide-react";
 import Link from "next/link";
@@ -12,7 +12,7 @@ import { Card, DetailHeader, DetailTag } from "./primitives";
 interface Msg { id: string; role: "user" | "agent"; runId?: string; text: string; citations: Citation[]; events: string[]; version?: number | null; provider?: string; approval?: ApprovalRequest & { decided?: string }; error?: string; done?: boolean }
 let n = 0;
 
-/** Talks to the real agent of the selected application through @vistra/sdk-core and a dashboard-only session. */
+/** Talks to the real agent of the selected application through @boredooms/vistra-sdk and a dashboard-only session. */
 export function Playground({ publishedVersion }: { publishedVersion?: number | null }) {
   const { app, call } = useVistra();
   const [msgs, setMsgs] = useState<Msg[]>([]);
