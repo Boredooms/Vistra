@@ -1,0 +1,20 @@
+{
+  "name": "@vistra/extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "VISTRA browser extension (Chrome/Edge MV3): the assistant, ghost cursor and page understanding on any site you enable.",
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@vistra/ghost-cursor": "workspace:*",
+    "@vistra/sdk-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.287",
+    "esbuild": "^0.24.2",
+    "typescript": "^5.6.3"
+  }
+}

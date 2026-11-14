@@ -1,0 +1,9 @@
+packages:
+  - "apps/demo"
+  - "apps/web"
+  - "apps/extension"
+  - "packages/*"
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - unrs-resolver

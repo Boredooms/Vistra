@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>VISTRA settings</title>
+  <link rel="stylesheet" href="ui.css" />
+</head>
+<body class="options">
+  <main>
+    <h1><span class="mark" aria-hidden="true"></span> VISTRA extension</h1>
+    <p class="sub">Connect the extension to a VISTRA application. Use a key from the dashboard's <b>Browser extension</b> preset (scope <code>sdk:session</code> only). It is stored in this browser profile; revoke it in the dashboard if this device is lost.</p>
+    <form id="f">
+      <label for="apiUrl">API URL</label>
+      <input id="apiUrl" required inputmode="url" />
+      <label for="appId">App ID</label>
+      <input id="appId" required placeholder="app_..." />
+      <label for="apiKey">API key</label>
+      <input id="apiKey" type="password" autocomplete="off" placeholder="vsk_..." />
+      <label for="role">Act as</label>
+      <select id="role">
+        <option value="viewer">Viewer: answers and guides only</option>
+        <option value="admin">Admin: can propose actions (each needs your approval)</option>
+      </select>
+      <div class="origin">Allow this origin on the application in the VISTRA dashboard:<code id="extOrigin"></code></div>
+      <div class="row">
+        <button class="btn primary" type="submit">Save and test</button>
+        <button class="btn" type="button" id="shots">Allow screenshots on every enabled site</button>
+      </div>
+      <p id="out" class="msg" role="status"></p>
+    </form>
+  </main>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

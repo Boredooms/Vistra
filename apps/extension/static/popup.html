@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>VISTRA</title>
+  <link rel="stylesheet" href="ui.css" />
+</head>
+<body class="popup">
+  <header><span class="mark" aria-hidden="true"></span><strong>VISTRA</strong><a id="opts" href="options.html" target="_blank">Settings</a></header>
+  <p id="site" class="site"></p>
+  <p id="msg" class="msg" role="status"></p>
+  <div class="actions">
+    <button id="enable" class="btn primary" hidden>Enable on this site</button>
+    <button id="explain" class="btn primary" hidden>Explain this page</button>
+    <button id="open" class="btn" hidden>Open assistant</button>
+    <button id="disable" class="btn ghost" hidden>Turn off on this site</button>
+  </div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
