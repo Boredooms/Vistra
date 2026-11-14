@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import os
 from dataclasses import dataclass
 from typing import Any, TypedDict
 
@@ -190,7 +191,8 @@ async def _configure(conn) -> None:
 async def get_pool() -> AsyncConnectionPool:
     global _pool
     if _pool is None:
-        _pool = AsyncConnectionPool(conninfo(), min_size=1, max_size=3, open=False, configure=_configure,
+        _pool = AsyncConnectionPool(conninfo(), min_size=1, max_size=int(os.environ.get("CHECKPOINT_POOL_MAX", "2")), open=False,
+                                    configure=_configure, max_idle=120,
                                     check=AsyncConnectionPool.check_connection,
                                     kwargs={"autocommit": True, "prepare_threshold": None, "row_factory": dict_row})
         await _pool.open(wait=True, timeout=30)

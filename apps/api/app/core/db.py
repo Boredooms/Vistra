@@ -9,6 +9,7 @@ Two paths, both explicit:
 """
 from __future__ import annotations
 
+import os
 import uuid
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
@@ -41,8 +42,11 @@ def get_engine() -> AsyncEngine:
         local = (urlsplit(s.supabase_db_url).hostname or "") in ("localhost", "127.0.0.1")
         _engine = create_async_engine(
             build_url(s.supabase_db_url),
-            pool_size=4,
-            max_overflow=4,
+            # Supabase session pooler caps clients at 15 for ALL API instances together (e.g. local + Render):
+            # keep each instance at <= 7 (5 here + 2 checkpointer). Tune with DB_POOL_SIZE / DB_MAX_OVERFLOW.
+            pool_size=int(os.environ.get("DB_POOL_SIZE", "3")),
+            max_overflow=int(os.environ.get("DB_MAX_OVERFLOW", "2")),
+            pool_timeout=20,
             pool_pre_ping=True,  # pooler drops idle connections; requires session mode (port 5432), not transaction mode
             pool_recycle=240,
             connect_args={
