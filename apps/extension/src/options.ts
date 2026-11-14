@@ -10,6 +10,11 @@ async function init() {
   $<HTMLInputElement>("apiKey").placeholder = c.apiKey ? `${c.apiKey.slice(0, 8)}... (saved)` : "vsk_...";
   $<HTMLSelectElement>("role").value = c.role;
   $("extOrigin").textContent = location.origin;
+  $("copyOrigin").onclick = async () => {
+    await navigator.clipboard.writeText(location.origin);
+    $("copyOrigin").textContent = "Copied";
+    setTimeout(() => ($("copyOrigin").textContent = "Copy"), 1500);
+  };
 
   $("shots").onclick = async () => {
     const ok = await chrome.permissions.request({ origins: ["<all_urls>"] });

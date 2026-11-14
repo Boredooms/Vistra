@@ -89,10 +89,15 @@ function Editor({ app }: { app: Application }) {
             </li>
           ))}
         </ul>
-        <form className="flex gap-2" onSubmit={(e) => { e.preventDefault(); if (origin) run(async () => { await call(`/v1/applications/${app.id}/domains`, { method: "POST", json: { origin } }); setOrigin(""); }, "Origin added"); }}>
-          <Input aria-label="Add origin" value={origin} onChange={(e) => setOrigin(e.target.value)} placeholder="https://staging.acme.com" />
+        <form className="flex gap-2" onSubmit={(e) => {
+          e.preventDefault();
+          const o = origin.trim().replace(/\/+$/, "");
+          if (o) run(async () => { await call(`/v1/applications/${app.id}/domains`, { method: "POST", json: { origin: o } }); setOrigin(""); }, "Origin added");
+        }}>
+          <Input aria-label="Add origin" value={origin} onChange={(e) => setOrigin(e.target.value)} placeholder="https://staging.acme.com or chrome-extension://<id>" />
           <Button variant="outline"><Plus size={14} />Add</Button>
         </form>
+        {err ? <ErrorNote error={err} /> : null}
 
         <h2 className="pt-4 text-sm font-medium">Tool signing secret</h2>
         <p className="text-[13px] text-muted">Your tool endpoints verify an HMAC-SHA256 of {"{tool, args, run_id, ts}"} with this secret. It is shown once and stored encrypted.</p>
@@ -107,7 +112,6 @@ function Editor({ app }: { app: Application }) {
           </div>
         )}
       </section>
-      {err ? <div className="lg:col-span-2"><ErrorNote error={err} /></div> : null}
     </div>
   );
 }
