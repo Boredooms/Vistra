@@ -36,7 +36,10 @@ jobs:
         with: { node-version: 22, cache: pnpm }
       - run: pnpm install --frozen-lockfile
       - run: pnpm -r --if-present typecheck
-      - run: pnpm -r --if-present test
+      - run: pnpm -r --if-present test -- --run
+      - run: pnpm --filter @vistra/extension run build
+      - uses: actions/upload-artifact@v4
+        with: { name: vistra-extension-unpacked, path: apps/extension/dist }
 
   docs:
     runs-on: ubuntu-latest
