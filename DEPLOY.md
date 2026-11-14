@@ -6,7 +6,7 @@ Three deployables plus one package release. They are separate on purpose:
 |---|---|---|---|
 | API (FastAPI + LangGraph + worker) | Render (Docker) | `render.yaml` | VISTRA itself |
 | Website + dashboard (`apps/web`) | Vercel project `vistra-web` | `apps/web` | VISTRA itself (Clerk sign-in, apps, keys, knowledge, logs) |
-| Acme demo (`apps/demo`) | Vercel project `vistra-demo` | `apps/demo` | A *customer* of VISTRA. It only knows an app ID + API key |
+| Acme demo (`apps/demo`) | Vercel project `vistra-acme-demo` | `apps/demo` | A *customer* of VISTRA. It only knows an app ID + API key |
 | `@boredooms/vistra-sdk`, `@boredooms/vistra-ghost-cursor` | npm | `packages/*` | What any customer site installs |
 | Extension | GitHub Actions artifact / release zip | `apps/extension` | Runs VISTRA on sites you enable |
 
@@ -15,6 +15,17 @@ Acme and VISTRA are different sites with different origins. Acme never sees VIST
 
 Supabase (Tokyo project), Upstash Redis and Clerk are already set up and migrated (0001-0008). Production uses the same
 values that are in your local `c:\vistra\.env`. Nothing new has to be created in Supabase.
+
+## Live now
+
+| | URL |
+|---|---|
+| API | https://vistra-api.onrender.com (`/readyz`) |
+| Website + dashboard | https://vistra-web.vercel.app |
+| Acme demo | https://vistra-acme-demo.vercel.app (connect on `/setup`) |
+| npm | `@boredooms/vistra-sdk`, `@boredooms/vistra-ghost-cursor` (0.1.0) |
+
+Redeploy from the CLI: `scripts/deploy/render_create.ps1` (first time) and `scripts/deploy/vercel_config.ps1`, then `vercel deploy --prod` from the repo root with `VERCEL_ORG_ID`/`VERCEL_PROJECT_ID` from `apps/<app>/.vercel/project.json`.
 
 ## 1. API on Render (do this first: everything else needs its URL)
 
@@ -29,11 +40,11 @@ values that are in your local `c:\vistra\.env`. Nothing new has to be created in
    | `GEMINI_API_KEY`, `NVIDIA_API_KEY` | from `.env` |
    | `CLERK_SECRET_KEY`, `CLERK_ISSUER`, `CLERK_JWKS_URL` | from `.env` |
    | `TOOL_SIGNING_SECRET`, `ENCRYPTION_KEY` | from `.env` (**must stay identical**, or stored tool secrets cannot be decrypted) |
-   | `CORS_ALLOWED_ORIGINS` | `https://vistra-web.vercel.app,https://vistra-demo.vercel.app` (your real Vercel URLs, comma separated, no trailing slash) |
+   | `CORS_ALLOWED_ORIGINS` | `https://vistra-web.vercel.app,https://vistra-acme-demo.vercel.app` (your real Vercel URLs, comma separated, no trailing slash) |
    | `APP_URL` | `https://vistra-web.vercel.app` |
    | `API_URL` | `https://vistra-api.onrender.com` (shown by Render after the first deploy) |
 
-3. Deploy. Check `https://<api>.onrender.com/readyz` returns `{"status":"ready"}`.
+3. Deploy. Check `https://vistra-api.onrender.com/readyz` returns `{"status":"ready"}`.
    Free plan sleeps after 15 min idle; the first request then takes about 50 s. Use a paid plan for demos.
 
 ## 2. Website + dashboard on Vercel
@@ -42,7 +53,7 @@ vercel.com → **Add New → Project** → import `Boredooms/Vistra` → **Root 
 
 | Variable | Value |
 |---|---|
-| `NEXT_PUBLIC_VISTRA_API_URL`, `VISTRA_API_URL` | `https://<api>.onrender.com` |
+| `NEXT_PUBLIC_VISTRA_API_URL`, `VISTRA_API_URL` | `https://vistra-api.onrender.com` |
 | `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY` | from `apps/web/.env.local` |
 | `VISTRA_API_KEY` | the website's own `sdk:session` key (`WEB_VISTRA_API_KEY` in `.env`) |
 | `NEXT_PUBLIC_VISTRA_APP_ID` | `app_vistra_web` |
@@ -60,16 +71,16 @@ Import the same repo again → **Root Directory `apps/demo`**. Environment varia
 |---|---|
 | `DEMO_DATABASE_URL` | from `apps/demo/.env.local` |
 | `NEXT_PUBLIC_VISTRA_DASHBOARD_URL` | `https://vistra-web.vercel.app/dashboard` |
-| `VISTRA_API_URL` (optional) | `https://<api>.onrender.com` |
+| `VISTRA_API_URL` (optional) | `https://vistra-api.onrender.com` |
 | `VISTRA_API_KEY`, `NEXT_PUBLIC_VISTRA_APP_ID`, `TOOL_SIGNING_SECRET` (optional) | only to preconfigure. Otherwise paste on `/setup` |
 
 Then connect it the way a real customer would:
 
 1. In the dashboard, open your app (for example `app_130aacee2981`). Under **Allowed origins** type the demo origin
-   (`https://vistra-demo.vercel.app`, and `http://localhost:3001` for local) and **click + Add**: typing alone saves nothing.
+   (`https://vistra-acme-demo.vercel.app`, and `http://localhost:3001` for local) and **click + Add**: typing alone saves nothing.
 2. Keys page → **Website widget (server)** preset → copy the key (shown once).
-3. Optional, for actions: set the app's **Tool base URL** to `https://vistra-demo.vercel.app` → **Generate** a tool secret → copy it.
-4. Open `https://vistra-demo.vercel.app/setup` → paste API URL, App ID, key (and tool secret) → **Verify and save**.
+3. Optional, for actions: set the app's **Tool base URL** to `https://vistra-acme-demo.vercel.app` → **Generate** a tool secret → copy it.
+4. Open `https://vistra-acme-demo.vercel.app/setup` → paste API URL, App ID, key (and tool secret) → **Verify and save**.
    The page checks the key, the app and the origin against the live API and shows the exact fix if one is wrong.
    The live panel on that page pings the backend every 5 s and lists every call the assistant makes, in real time.
 
@@ -104,7 +115,7 @@ import { Vistra, mountWidget } from "@boredooms/vistra-sdk";
 
 const vistra = Vistra.init({
   appId: "app_xxx",
-  apiUrl: "https://<api>.onrender.com",
+  apiUrl: "https://vistra-api.onrender.com",
   // your server route that calls POST /v1/sdk/sessions with your sdk:session key (never ship the key to the browser)
   getSessionToken: (prev) => fetch("/api/vistra/session", { method: "POST", body: JSON.stringify({ session_id: prev?.session_id }) }).then((r) => r.json()),
 });
